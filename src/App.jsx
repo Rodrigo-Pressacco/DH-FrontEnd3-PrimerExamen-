@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import swal from 'sweetalert';
 import data from "./components/data.json"
 import Eleccion from "./components/Eleccion";
 import HistoriaH1 from "./components/HistoriaH1";
@@ -27,17 +28,23 @@ export default class App extends Component {
 
     //console.log("Primero "+ this.state.opcion);
 
-
-
-    // console.log(id);
+   // console.log(id);
   };
 
+  terminoLaAventura = ()=>{
+    swal("La aventura a  terminado")
+  }
 
-
+  empezarDeNuevo =()=>{
+    this.setState({data: [],
+      registro: data[0],
+      contador: 1,
+      opcion: "",
+      historial: ""})
+  }
 
 
   render() {
-
 
     return (
 
@@ -48,23 +55,25 @@ export default class App extends Component {
           {this.state.contador <6 ?
           this.state.contador == 1 ?
             <>
-              <HistoriaH1 key={this.state.contador+1} registro={this.state.registro} />
-              <Eleccion key={this.state.contador+2} registro={this.state.registro} onSelect={this.handleSelected} />
+              <HistoriaH1 registro={this.state.registro} />
+              <Eleccion registro={this.state.registro} onSelect={this.handleSelected} />
             </>
-            : this.state.data.map((e,i) => {
-              let h = e.id.split("")
-              if (h[1] == this.state.opcion && h[0] == this.state.contador) {
-                return <>
-                  <HistoriaH1 key={this.state.contador + this.state.opcion} registro={e} />
-                  <Eleccion key={this.state.opcion + this.state.contador} registro={e} onSelect={this.handleSelected} />
-                </>
+            : this.state.data.map((element,i) => {              
+              let elementSplit = element.id.split("")
+
+              if (elementSplit[0] == this.state.contador && elementSplit[1] == this.state.opcion) {
+
+                return <div key={i}>
+                  <HistoriaH1 key={this.state.contador + this.state.opcion} registro={element} />
+                  <Eleccion key={this.state.opcion + this.state.contador} registro={element} onSelect={this.handleSelected} />
+                </div>                
               }
             })
-          :alert("Se acabo la historia")
+          :<> {this.terminoLaAventura()} </>
           }
 
 
-          <Recordatorio opcion={this.state.opcion} historial={this.state.historial} />
+          <Recordatorio opcion={this.state.opcion} historial={this.state.historial} contador={this.state.contador} />
         </div>
       </div>
     );
