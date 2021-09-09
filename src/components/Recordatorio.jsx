@@ -11,12 +11,10 @@ export default class Recordatorio extends Component {
 
         return (
             <div className="recordatorio">
-                {contador < 6 ?
-                    <>
-                        <h3>Seleccion anterior: {opcion.toUpperCase()}</h3>
-                        <h4>Historial de opciones elegidas: {historialSplit.map((e, i) => <li key={e + i}>{e.toUpperCase()}</li>)}</h4>
-                    </>
-                    : <></>}
+
+                <h3>Seleccion anterior: {opcion.toUpperCase()}</h3>
+                <h4>Historial de opciones elegidas: {historialSplit.map((e, i) => <li key={e + i}>{e.toUpperCase()}</li>)}</h4>
+
             </div>
         )
 
