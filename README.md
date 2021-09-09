@@ -1,6 +1,6 @@
 **Url a CodeSandbox**
 
-https://codesandbox.io/s/quizzical-butterfly-5vcro?file=/src/App.jsx
+https://codesandbox.io/s/great-feather-pw2cz?file=/src/index.js
 
 **Primer evaluación entregable de Front-end III para C.T.D.**
 
